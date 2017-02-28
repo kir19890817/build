@@ -9,7 +9,7 @@ USRINC ?= $(INS)/usr/include
 # Операционная система (linux/qnx)
 SYS ?= $(shell uname -s | tr A-Z a-z)
 
-CXX = g++ -g
+CXX = g++ -g -std=c++11
 CXXFLAGS =-I$(USRINC)
 AR = ar
 OSUF = o
