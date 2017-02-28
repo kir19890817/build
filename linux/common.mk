@@ -11,7 +11,7 @@ USRINC = $(INS)/usr/include
 #SYS ?= $(shell uname -s | tr A-Z a-z)
 SYS = linux
 
-CXX = g++
+CXX = g++ -std=c++11
 CXXFLAGS = -I$(USRINC) 
 AR = ar
 OSUF = o
