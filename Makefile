@@ -2,7 +2,7 @@ include ../build_spec/targets.mk
 
 ALL = $(LIBS) $(APPS) 
 
-HOST = $(shell uname -s | tr A-Z a-z)
+#HOST = $(shell uname -s | tr A-Z a-z)
 MEXEXT = mex
 
 ifeq ($(HOST), linux)
