@@ -1,10 +1,11 @@
 include $(DEPTH)/../build/common.mk
--include $(DEPTH)/../build_spec/native/specific.mk
+-include $(DEPTH)/../build_spec/utests/specific.mk
 
-# Операционная система (linux/qnx)
 SYS ?= $(shell uname -s | tr A-Z a-z)
+CXXFLAGS += -I$(DEPTH)/../src/
 
 CXX = g++ 
 AR = ar
 OSUF = o
 OBJDIR = obj_nat
+

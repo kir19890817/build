@@ -1,9 +1,6 @@
+include $(DEPTH)/../build/common.mk
 -include $(DEPTH)/../build_spec/python/specific.mk
 # Каталог компиляции программ
-BIN = $(INS)/bin
-# Каталог с настроечными файлами
-ETC = $(INS)/etc
-LIBS = $(INS)/lib
 USRINC = $(INS)/include
 EXTINC ?= $(USRINC)
 ETXLIBS ?= $(LIBS) 
@@ -14,7 +11,7 @@ OBJDIR = obj_py
 PYTHON = $(shell echo $$PYTHONHOME)
 
 CXX = g++
-CXXFLAGS = -I$(DEPTH)/ -I$(PYTHON)/include -I$(EXTINC) -I$(USRINC) \
+CXXFLAGS += -I$(DEPTH)/ -I$(PYTHON)/include -I$(EXTINC)  \
 					 -I$(DEPTH)/../../install/usr/include
 
 NO_HEADERINS = 1
