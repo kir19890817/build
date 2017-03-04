@@ -2,7 +2,7 @@ include ../build_spec/targets.mk
 
 ALL = $(LIBS) $(APPS) 
 
-#HOST = $(shell uname -s | tr A-Z a-z)
+HOST = $(shell uname -s | tr A-Z a-z)
 MEXEXT = mex
 
 ifeq ($(HOST), linux)
@@ -54,12 +54,12 @@ u: utests
 .PHONY: utests
 utests:
 	for i in $(NATIVELIBS); do $(MAKE) -f Makefile.nat -C ../src/$$i; done
-	for i in $(UTESTS); do $(MAKE) -f Makefile.nat -C ../src/$$i/utests run; done
+	for i in $(UTESTS); do $(MAKE) -f Makefile.utest -C ../src/$$i/utests run; done
 
 .PHONY: utests_clean
 utests_clean:
 	for i in $(NATIVELIBS); do $(MAKE) -s -f Makefile.nat -C ../src/$$i clean; done
-	for i in $(UTESTS); do $(MAKE) -s -f Makefile.nat -C ../src/$$i/utests clean; done
+	for i in $(UTESTS); do $(MAKE) -s -f Makefile.utest -C ../src/$$i/utests clean; done
 
 .PHONY: nat
 nat:
