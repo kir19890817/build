@@ -4,7 +4,7 @@ ETC ?= $(INS)/etc
 LIBS ?= $(INS)/lib
 USRINC ?= $(INS)/usr/include
 
-CXXFLAGS = -I$(USRINC) -std=c++11
+CXXFLAGS = -I$(USRINC) -std=c++14
 
 ifndef NDEBUG
 CXXFLAGS += -D_DEBUG -g
