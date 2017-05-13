@@ -1,5 +1,7 @@
 include ../build_spec/targets.mk
 
+reverse = $(if $(1),$(call reverse,$(wordlist 2,$(words $(1)),$(1)))) $(firstword $(1))
+
 ALL = $(LIBS) $(APPS) 
 
 HOST = $(shell uname -s | tr A-Z a-z)
@@ -15,7 +17,7 @@ all:
 
 .PHONY: clean
 clean: 
-	for i in $(ALL); do $(MAKE) -s -f Makefile.qnx -C ../src/$$i clean; done
+	for i in $(call reverse,$(ALL)); do $(MAKE) -s -f Makefile.qnx -C ../src/$$i clean; done
 
 .PHONY: mex
 mex:
@@ -24,8 +26,8 @@ mex:
 
 .PHONY: mex_clean
 mex_clean:
-	for i in $(MEX); do $(MAKE) -s -f Makefile.$(MEXEXT) -C ../src/$$i clean; done
-	for i in $(MEXTESTS); do $(MAKE) -s -f Makefile.$(MEXEXT) -C ../src/$$i/mtests clean; done
+	for i in $(call reverse,$(MEX)); do $(MAKE) -s -f Makefile.$(MEXEXT) -C ../src/$$i clean; done
+	for i in $(call reverse,$(MEXTESTS)); do $(MAKE) -s -f Makefile.$(MEXEXT) -C ../src/$$i/mtests clean; done
 
 .PHONY: py
 py:
@@ -34,8 +36,8 @@ py:
 
 .PHONY: py_clean
 py_clean:
-	for i in $(PYTHON); do $(MAKE) -s -f Makefile.pymod -C ../src/$$i clean; done
-	for i in $(PYTESTS); do $(MAKE) -s -f Makefile.pymod -C ../src/$$i/pytests clean; done
+	for i in $(call reverse, $(PYTHON)); do $(MAKE) -s -f Makefile.pymod -C ../src/$$i clean; done
+	for i in $(call reverse, $(PYTESTS)); do $(MAKE) -s -f Makefile.pymod -C ../src/$$i/pytests clean; done
 
 .PHONY: l, lin
 l lin: linux
@@ -46,7 +48,7 @@ linux:
 
 .PHONY: linux_clean
 linux_clean:
-	for i in $(ALL); do $(MAKE) -s -f Makefile.linux -C ../src/$$i clean; done
+	for i in $(call reverse,$(ALL)); do $(MAKE) -s -f Makefile.linux -C ../src/$$i clean; done
 
 .PHONY: u
 u: utests
@@ -58,8 +60,8 @@ utests:
 
 .PHONY: utests_clean
 utests_clean:
-	for i in $(NATIVELIBS); do $(MAKE) -s -f Makefile.nat -C ../src/$$i clean; done
-	for i in $(UTESTS); do $(MAKE) -s -f Makefile.utest -C ../src/$$i/utests clean; done
+	for i in $(call reverse,$(NATIVELIBS)); do $(MAKE) -s -f Makefile.nat -C ../src/$$i clean; done
+	for i in $(call reverse,$(UTESTS)); do $(MAKE) -s -f Makefile.utest -C ../src/$$i/utests clean; done
 
 .PHONY: nat
 nat:
@@ -68,5 +70,5 @@ nat:
 
 .PHONY: nat_clean
 nat_clean:
-	for i in $(NATIVELIBS); do $(MAKE) -s -f Makefile.nat -C ../src/$$i clean; done
-	for i in $(NATIVEAPPS); do $(MAKE) -s -f Makefile.nat -C ../src/$$i clean; done
+	for i in $(call reverse,$(NATIVELIBS)); do $(MAKE) -s -f Makefile.nat -C ../src/$$i clean; done
+	for i in $(call reverse,$(NATIVEAPPS)); do $(MAKE) -s -f Makefile.nat -C ../src/$$i clean; done

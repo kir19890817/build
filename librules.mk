@@ -20,11 +20,11 @@ include $(DEPTH)/../build/objrules.mk
 
 .PHONY: clean
 ifndef NO_HEADERINS
-clean: cleandep cleanobj
+clean: cleanobj cleandep 
 	@-rm $(TARGETINS)
 	@-rm $(LIBDIRINS)/*.h
 else
-clean: cleandep cleanobj
+clean: cleanobj cleandep 
 	@-rm $(TARGETINS)
 endif
 
