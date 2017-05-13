@@ -15,7 +15,6 @@ $(TARGETINS): $(patsubst %.o, $(TEMP)/$(TARGET)/$(OBJDIR)/%.o, $(OBJS)) \
 
 $(CONFIGSINS): $(CONFIGS)
 	@[ -d $(dir $@) ] || mkdir -p $(dir $@)
-	echo $(CONFIGSINS)
 	@for i in $(CONFIGS); do cp -f $$i $(ETC); done
 
 include $(DEPTH)/../build/objrules.mk
